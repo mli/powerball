@@ -1,4 +1,4 @@
-n = 1e6; X = X(1:n, :); ix = sum(X); X = X(:,ix>0); Y = Y(1:n);
+n = 4e5; X = X(1:n, :); ix = sum(X); X = X(:,ix>0); Y = Y(1:n);
 %% gd
 Y(Y<=0) = -1; Y(Y>0) = 1;
 

@@ -11,7 +11,7 @@ end
 s = [];
 y = [];
 max_m = m;
-[objv, g, auc] = obj(w);
+[objv, g] = obj(w);
 objvs = [];
 for k = 1 : niter
 % two loop
@@ -35,9 +35,9 @@ for k = 1 : niter
 % back tracking
   alpha = ls.lr;
   gp = g'*p;
-  fprintf('epoch %d, objv %f, gp %f, auc %f \n', k, objv, gp, auc);
+  fprintf('epoch %d, objv %f, gp %f \n', k, objv, gp);
   for j = 1 : ls.nstep
-    [new_o, new_g, auc] = obj(w + alpha * p);
+    [new_o, new_g] = obj(w + alpha * p);
     new_gp = new_g' * p;
     fprintf('\talpha %f, new_objv %f, new_gp %f\n', alpha, new_o, new_gp);
     if (new_o <= objv + ls.c1 * alpha * gp) % && (new_gp >= ls.c2 * gp)
