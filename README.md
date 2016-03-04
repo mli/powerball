@@ -1,1 +1,1 @@
-# powerball
+# The Powerball Method
