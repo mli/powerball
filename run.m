@@ -1,4 +1,4 @@
-% n = 1e6; X = X(1:n, :); ix = sum(X); X = X(:,ix>10); Y = Y(1:n);
+% n = 1e5; X = X(1:n, :); ix = sum(X); X = X(:,ix>0); Y = Y(1:n);
 
 %% rcv1 + lbfgs
 load data/rcv1
@@ -7,17 +7,27 @@ bt.lr = 1; bt.rho = .6; bt.nstep = 10;
 m = 5; max_iter = 30;
 
 %% rcv1 + gd
+load data/rcv1
+name = 'rcv1_gd';
+bt.lr = 1; bt.rho = .8; bt.nstep = 10;
+m = 0; max_iter = 30;
 
-%% news20
+%% news20 + lbfgs
 load data/news20
 name = 'news20_lbfgs_5';
 bt.lr = 1; bt.rho = .6; bt.nstep = 10;
 m = 5; max_iter = 30;
 
+%% news20 + lbfgs
+load data/news20
+name = 'news20_gd';
+bt.lr = .1; bt.rho = .8; bt.nstep = 10;
+m = 0; max_iter = 30;
+
 %% ctr lbfgs
 load ctr
 name = 'ctr_lbfgs_5';
-bt.lr = 1; bt.rho = .6; bt.nstep = 10;
+bt.lr = 1; bt.rho = .2; bt.nstep = 6;
 m = 5; max_iter = 100;
 
 %% run
