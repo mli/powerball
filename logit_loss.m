@@ -3,7 +3,7 @@ Xw = X * w;
 tau = Y .* (Xw);
 objv = sum(log(1 + exp(-tau)));
 % tau = max(-100, min(100, tau));
-grad = X' * (- Y ./ (1  + exp(tau))) / length(Y) + l2 * w;
+grad = X' * (- Y ./ (1  + exp(tau))) + l2 * w;
 
 if func == 0; return; end
 

@@ -35,16 +35,18 @@ for k = 1 : niter
 % back tracking
   alpha = ls.lr;
   gp = g'*p;
-  fprintf('epoch %d, objv %f, gp %f \n', k, objv, gp);
+  fprintf('epoch %d, objv %g', k, objv);
   for j = 1 : ls.nstep
     [new_o, new_g] = obj(w + alpha * p);
+    fprintf('\talpha %g, objv %g', alpha, new_o);
     new_gp = new_g' * p;
-    fprintf('\talpha %f, new_objv %f, new_gp %f\n', alpha, new_o, new_gp);
+% fprintf(' alpha %g, new_objv %g, new_gp %g;', alpha, new_o, new_gp);
     if (new_o <= objv + ls.c1 * alpha * gp) % && (new_gp >= ls.c2 * gp)
       break;
     end
     alpha = alpha * ls.rho;
   end
+  fprintf('\n');
 
 % update s and y
   if m >= max_m
