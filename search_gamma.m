@@ -1,5 +1,4 @@
-function res = search_gamma(X, Y, m, max_iter, func, gamma, linesearch)
-repeat = 10;
+function res = search_gamma(X, Y, m, max_iter, func, gamma, linesearch, repeat)
 l2 = 0;
 
 w = @() randn(size(X,2),1)*.1;
@@ -13,5 +12,5 @@ for g = gamma
     fprintf('gamma =  %f, repeat = %d\n', g, r);
     objv(r,:) = lbfgs(obj, w(), m, max_iter, linesearch);
   end
-  res = [res; mean(objv)];
+  res = [res; mean(objv, 1)];
 end
