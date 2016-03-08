@@ -1,4 +1,17 @@
 function [objvs] = lbfgs(obj, w, m, niter, linesearch)
+%LIMITED BFGS
+% [objvs] = lbfgs(obj, w, m, niter, linesearch)
+% obj        : the objective function
+% w          : initial w
+% m          : m
+% niter      : maximal number of iterations
+% linesearch : backtracking linesearch
+%              - lr    : start step size
+%              - c1    : constant c1
+%              - c2    : constant c2
+%              - rho   : decay of step size
+%              - nstep : maximal number of searchs
+% objvs      : the objective for each iteration
 
 default_ls = struct('lr', 1, 'c1', 1e-4, 'c2', .9, 'rho', .8, 'nstep', 8);
 

@@ -5,7 +5,7 @@ Y(Y<=0) = -1; Y(Y>0) = 1;
 res = [];
 for g = gamma
   loss = @(w) logit_loss(Y, X, w, l2);
-  obj = @(w, k) power_grad(loss, w, k, max_iter, [g,g], func);
+  obj = @(w, k) power_func(loss, w, k, max_iter, [g,g], func);
   objv = zeros(repeat, max_iter);
   for r = 1 : repeat
     fprintf('gamma =  %f, repeat = %d\n', g, r);

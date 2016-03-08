@@ -8,7 +8,7 @@ for f = func
   for r = 1 : repeat
     fprintf('func =  %g, repeat = %d\n', f, r);
     loss = @(w) logit_loss(Y, X, w, l2);
-    obj = @(w, k) power_grad(loss, w, k, max_iter, gamma, f);
+    obj = @(w, k) power_func(loss, w, k, max_iter, gamma, f);
     objv(r,:) = lbfgs(obj, w(), m, max_iter, linesearch);
   end
   res = [res; mean(objv, 1)];
