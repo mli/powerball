@@ -11,7 +11,7 @@ end
 s = [];
 y = [];
 max_m = m;
-[objv, g] = obj(w);
+[objv, g] = obj(w, 0);
 objvs = [];
 for k = 1 : niter
 % two loop
@@ -37,10 +37,9 @@ for k = 1 : niter
   gp = g'*p;
   fprintf('epoch %d, objv %g', k, objv);
   for j = 1 : ls.nstep
-    [new_o, new_g] = obj(w + alpha * p);
+    [new_o, new_g] = obj(w + alpha * p, k);
     fprintf('\talpha %g, objv %g', alpha, new_o);
     new_gp = new_g' * p;
-% fprintf(' alpha %g, new_objv %g, new_gp %g;', alpha, new_o, new_gp);
     if (new_o <= objv + ls.c1 * alpha * gp) % && (new_gp >= ls.c2 * gp)
       break;
     end
