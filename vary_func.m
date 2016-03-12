@@ -44,7 +44,7 @@ for i = 1 : 3
   opt.mk={''}; opt.ls={'-', '--', '-.', ':'};
   muplot2([], res', opt)
 % legend(strcat('\gamma=', num2str(gammas')))
-  legend({'baseline', 'sign(g)', 'tanh(sign(g)g^\gamma)'})
+  legend({'baseline', 'sign(g)|g|^\gamma', 'tanh(sign(g)|g|^\gamma)|g|^\gamma'})
   xlabel('iteration')
   ylabel('objective')
   savepdf(['fig/', name, '_objv'])
