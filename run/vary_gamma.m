@@ -55,7 +55,7 @@ l2 = 1;
 
 %% run
 gammas = [1 .7 .4 .1];
-res = search_gamma(X, Y, l2, m, max_iter, 1, gammas, bt, 10);
+res = search_gamma(X, Y, l2, m, max_iter, gammas, bt, 10);
 
 %% save
 save(['res/' name], 'res', 'gammas')

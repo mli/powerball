@@ -7,7 +7,14 @@ function [objv, grad] = power_func(loss, w, curr_iter, max_iter, gamma)
 % max_iter  : maximal iteration
 % gamma     : [gamma_start, gamma_end]
 
-[objv, grad] = loss(w);
+[objv, grad, h] = loss(w);
+% global grads
+% grads = [grads grad];
 assert(length(gamma) == 2)
 gamma = gamma(1) + (gamma(2) - gamma(1)) * curr_iter / max_iter;
-grad = sign(grad) .* abs(grad).^gamma;
+
+% grad = sign(grad) .* abs(grad).^gamma;
+% grad = tanh(grad);
+% grad = grad ./ (1 + abs(grad));
+
+grad = grad ./ h;
