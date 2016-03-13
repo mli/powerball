@@ -1,4 +1,4 @@
-function [objv, grad, diag_hession] = logit_loss(Y, X, w, l2)
+function [objv, grad] = logit_loss(Y, X, w, l2)
 %LOGISTIC LOSS
 % [objv, grad] = logit_loss(Y, X, w, l2)
 % Y     : label
@@ -12,6 +12,3 @@ tau = Y .* (X * w);
 objv = sum(log(1 + exp(-tau)));
 tau = max(-100, min(100, tau));
 grad = X' * (- Y ./ (1  + exp(tau))) + l2 * w;
-
-tau = 1 ./ (1 + exp(tau));
-diag_hession = (X.*X)' * (tau.*(1-tau)) + l2;

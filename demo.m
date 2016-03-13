@@ -1,25 +1,34 @@
 %% load data
+[X, Y] = load_data('ctr');
 
-load_data('ctr')
-bt.lr = 1;
+%% hyper parameters
+% line search decay
 bt.rho = .2;
-bt.nstep = 6;
-m = 1;
-max_iter = 100;
+% lbfgs m
+m = 5;
+% l2 regularization, namely l2 * ||w||_2^2
 l2 = 1;
+% maximal number of iterations
+max_iter = 100;
 
-%%
-
-% global grads
-% grads = [];
-w = @() randn(size(X,2),1)*.1;
-res = [];
+%% run
+w = randn(size(X,2),1)*.1;
 loss = @(w) logit_loss(Y, X, w, l2);
-obj = @(w, k) power_func(loss, w, k, max_iter, [1,1]);
-[objv] = lbfgs(obj, w(), m, max_iter, bt);
 
+% standard lbfgs
+obj1 = @(w, k) power_func(loss, w, k, max_iter, [1, 1]);
+res1 = lbfgs(obj1, w(), m, max_iter, bt);
 
-%%
+% adaptive gamma varying from .1 to .9
+obj2 = @(w, k) power_func(loss, w, k, max_iter, [.1, .9]);
+res2 = lbfgs(obj2, w(), m, max_iter, bt);
 
-x = [x; mean(abs(grads))];
-y = [y; std((grads))];
+%% plot
+
+clf
+plot(1:max_iter, res1, '-ob');
+hold on
+plot(1:max_iter, res2, '-xr');
+xlabel('iteration')
+ylabel('objective')
+legend('lbfgs', 'powerball')

@@ -27,10 +27,6 @@ max_m = m;
 [objv, g] = obj(w, 0);
 objvs = [];
 
-% global grads
-grads = 1 + g.*g;
-% g = g ./ sqrt(grads) ;
-
 for k = 1 : niter
 % two loop
   m = size(y, 2);
@@ -57,7 +53,6 @@ for k = 1 : niter
   for j = 1 : ls.nstep
     [new_o, new_g] = obj(w + alpha * p, k);
     fprintf('\talpha %g, objv %g', alpha, new_o);
-    % new_g = new_g ./ sqrt(grads/k);
     new_gp = new_g' * p;
     if (new_o <= objv + ls.c1 * alpha * gp) % && (new_gp >= ls.c2 * gp)
       break;
@@ -79,8 +74,6 @@ for k = 1 : niter
 
   w = w + alpha * p;
   g = new_g;
-
-  grads = grads + g.*g;
 
   objv = new_o;
   objvs = [objvs, objv];
