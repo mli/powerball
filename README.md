@@ -9,4 +9,4 @@ First clone this repo
 git clone https://github.com/mli/powerball
 ```
 
-Then Open matlab,  go the directory `poweball`, run `demo`
+Then Open matlab,  go directory `poweball`, run `demo`
